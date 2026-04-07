@@ -1,14 +1,9 @@
 {
   "crons": [
     {
-      "path": "/api/sync?job=results&state=kerala",
-      "schedule": "*/2 * * * *",
-      "comment": "Sync live results every 2 minutes on election day (Apr 23-25 2026). Disable after results are final."
-    },
-    {
       "path": "/api/sync?job=candidates&state=kerala",
       "schedule": "0 2 * * *",
-      "comment": "Refresh candidate data nightly at 2am — picks up any late affidavit amendments"
+      "comment": "Refresh candidate data nightly — compatible with Vercel Hobby (daily limit). Live results are scraped on-demand by /api/results instead."
     }
   ]
 }
