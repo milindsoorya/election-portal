@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --kerala-green: #1a6b3a;
+  --kerala-saffron: #e8702a;
+  --kerala-gold: #d4a017;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f8f9fa;
+  color: #1a1a2e;
+}
+
+.ticker-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker 45s linear infinite;
+}
+
+.ticker-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+.gradient-kerala {
+  background: linear-gradient(135deg, #0f3d22 0%, #1a6b3a 50%, #2d9d5c 100%);
+}
+
+.alliance-ldf { background-color: #fff1f1; border-color: #e63946; color: #c1121f; }
+.alliance-udf { background-color: #f0f8ff; border-color: #0077b6; color: #005f8e; }
+.alliance-nda { background-color: #fff8f0; border-color: #f77f00; color: #c46200; }
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.progress-bar {
+  transition: width 1s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a6b3a;
+  border-radius: 3px;
+}
