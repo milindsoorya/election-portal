@@ -9,6 +9,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/db/supabase";
 import { CANDIDATES as STATIC_CANDIDATES } from "@/data";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   const p = req.nextUrl.searchParams;
   const stateId   = p.get("state")        || "kerala";
