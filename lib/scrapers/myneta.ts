@@ -24,8 +24,8 @@
  */
 
 import * as cheerio from "cheerio";
-import pRetry from "p-retry";
 import pLimit from "p-limit";
+import { withRetry } from "@/lib/retry";
 
 export interface MyNetaCandidate {
   id: string;
@@ -52,7 +52,7 @@ const RATE_LIMIT = pLimit(5); // max 5 concurrent requests
 const TIMEOUT_MS = 12_000;
 
 async function fetchJson<T>(url: string): Promise<T> {
-  return pRetry(
+  return withRetry(
     async () => {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
@@ -70,12 +70,12 @@ async function fetchJson<T>(url: string): Promise<T> {
         clearTimeout(timer);
       }
     },
-    { retries: 3, minTimeout: 2000, maxTimeout: 10000 }
+    { retries: 3, minTimeout: 2000 }
   );
 }
 
 async function fetchHtml(url: string): Promise<string> {
-  return pRetry(
+  return withRetry(
     async () => {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);

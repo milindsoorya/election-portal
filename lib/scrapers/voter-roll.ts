@@ -16,7 +16,7 @@
  * We fetch and cache those for offline booth lookups.
  */
 
-import pRetry from "p-retry";
+import { withRetry } from "@/lib/retry";
 
 export interface VoterSearchResult {
   voterId: string;
@@ -85,7 +85,7 @@ async function makeEciSearchRequest(
   payload: Record<string, string>,
   type: "EPIC" | "NAME"
 ): Promise<VoterSearchResult | null> {
-  return pRetry(
+  return withRetry(
     async () => {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
@@ -96,7 +96,6 @@ async function makeEciSearchRequest(
           headers: {
             "Content-Type": "application/json",
             "User-Agent": "IndiaElectionPortal/1.0",
-            // ECI requires a Referer header
             Referer: "https://electoralsearch.eci.gov.in/",
             Origin: "https://electoralsearch.eci.gov.in",
           },
@@ -116,7 +115,6 @@ async function makeEciSearchRequest(
     {
       retries: 2,
       minTimeout: 1000,
-      // Don't retry on 404 (not found is a valid response)
       shouldRetry: (err) => !err.message.includes("404"),
     }
   );

@@ -11,6 +11,8 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 import { searchByVoterId, searchByName } from "@/lib/scrapers/voter-roll";
 import { supabase } from "@/lib/db/supabase";
 // Demo records for when ECI is unreachable

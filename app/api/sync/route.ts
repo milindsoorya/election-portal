@@ -10,6 +10,8 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 import { getServiceClient } from "@/lib/db/supabase";
 import { scrapeEciResults, scrapeEciPartyTally } from "@/lib/scrapers/eci-results";
 import { fetchMyNetaCandidates } from "@/lib/scrapers/myneta";

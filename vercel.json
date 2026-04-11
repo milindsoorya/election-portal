@@ -2,8 +2,7 @@
   "crons": [
     {
       "path": "/api/sync?job=candidates&state=kerala",
-      "schedule": "0 2 * * *",
-      "comment": "Refresh candidate data nightly — compatible with Vercel Hobby (daily limit). Live results are scraped on-demand by /api/results instead."
+      "schedule": "0 2 * * *"
     }
   ]
 }

@@ -11,6 +11,8 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 import { supabase, getServiceClient } from "@/lib/db/supabase";
 import { scrapeEciResults, scrapeEciPartyTally } from "@/lib/scrapers/eci-results";
 import { ALLIANCE_COLORS } from "@/lib/constants";
